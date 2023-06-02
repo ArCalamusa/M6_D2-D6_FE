@@ -16,5 +16,6 @@ Ho inserito una pagination (libreria react-responsive-pagination) sia per la hom
 ![Schermata 2023-06-02 alle 14 25 49](https://github.com/ArCalamusa/M6_D2-D6_FE/assets/117526559/fac18d4b-f870-4792-9cf3-dbf0dd2c0c5f)
 
 Anteprima:
+
 https://github.com/ArCalamusa/M6_D2-D6_FE/assets/117526559/9f5d1af5-d8d4-4eaf-9b13-8a491ec43a6a
 
