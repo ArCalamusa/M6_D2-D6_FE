@@ -14,3 +14,6 @@ La pagina users mostra gli utenti (inseriti sempre tramite una POST) in delle ca
 
 Ho inserito una pagination (libreria react-responsive-pagination) sia per la home dei post che per la pagina degli utenti, che mostra la pagina attuale e le successive bloccando il back e next rispettivamente al raggiungimento della prima e dell’ultima pagina.  
 ![Schermata 2023-06-02 alle 14 25 49](https://github.com/ArCalamusa/M6_D2-D6_FE/assets/117526559/fac18d4b-f870-4792-9cf3-dbf0dd2c0c5f)
+
+Anteprima:
+https://github.com/ArCalamusa/M6_D2-D6_FE/assets/117526559/08feb96c-beab-4313-b924-d226803d8389
