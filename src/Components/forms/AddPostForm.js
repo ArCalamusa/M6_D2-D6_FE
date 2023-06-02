@@ -4,13 +4,15 @@ import Button from 'react-bootstrap/Button'
 import { getPosts } from '../../Reducers/postsSlice'
 import { addNewPost } from '../../Reducers/addNewPostSlice'
 import { Toast } from '../../utilities/notifications'
+import { Toaster } from "react-hot-toast"
+import Form from 'react-bootstrap/Form'
 
 const AddPostForm = ({ close }) => {
-    const toast = new Toast('Post salvato correttamente')
-    const noFile = new Toast('File mancante')
+    const successToast = new Toast('Post salvato correttamente')
+    const errorToast = new Toast('File mancante')
+
     const [file, setFile] = useState(null)
     const [formData, setFormData] = useState({})
-
 
     const dispatch = useDispatch()
 
@@ -50,29 +52,33 @@ const AddPostForm = ({ close }) => {
                 }
                 dispatch(addNewPost(postsFormData))
                     .then(() => {
-                        toast.success('salvato correttamente')
+                        successToast.success()
                         dispatch(getPosts({ page: 1, pageSize: 8 }))
                     })
             } catch (error) {
-                toast.warning('Salvataggio fallito')
+                errorToast.warning()
                 console.error('Salvataggio fallito', error)
             }
         } else {
             console.error('selezionare un file')
-            toast.missedFile('File mancante')
+            errorToast.warning()
         }
     }
 
     return (
         <div className='p-4'>
+            <Toaster
+                position="top-center"
+                reverseOrder={false}
+            />
             <form onSubmit={submitPost} encType='multipart/form-data'>
                 {/* per far si che il form accetti input normali e file */}
-                <div className='d-flex justify-center items-center flex-wrap gap-2'>
+                <div className='d-flex justify-center items-center flex-wrap'>
                     <input
                         type="text"
                         name="title"
-                        placeholder="titolo"
-                        className="text black w-full rounded mb-2 p-2"
+                        placeholder="Titolo"
+                        className="text black rounded mb-2 p-2 border w-100"
                         onChange={(e) => setFormData({
                             ...formData,
                             title: e.target.value
@@ -81,8 +87,8 @@ const AddPostForm = ({ close }) => {
                     <input
                         type="text"
                         name="author"
-                        placeholder="autore"
-                        className="text black w-full rounded mb-2 p-2"
+                        placeholder="Autore"
+                        className="text black rounded mb-2 p-2 border w-100"
                         onChange={(e) => setFormData({
                             ...formData,
                             author: e.target.value
@@ -91,7 +97,7 @@ const AddPostForm = ({ close }) => {
                     <select
                         name="rate"
                         placeholder="voto"
-                        className="text black w-full rounded mb-2 p-2"
+                        className="text-secondary rounded mb-2 p-2 border w-100 "
                         onChange={(e) => setFormData({
                             ...formData,
                             rate: e.target.value
@@ -108,7 +114,7 @@ const AddPostForm = ({ close }) => {
 
                 <textarea
                     placeholder="Testo del post..."
-                    className="text-black rounded p-2 mb-1"
+                    className="text-black rounded p-2 mb-2 border w-100"
                     rows={8}
                     onChange={(e) => setFormData({
                         ...formData,
@@ -120,7 +126,7 @@ const AddPostForm = ({ close }) => {
                     <input
                         name="img"
                         type="file"
-                        className="buttonInput text-black rounded"
+                        className="buttonInput text-black rounded p-2 mb-2"
                         onChange={onChangeHandleFile}
                     />
                 </div>
@@ -128,9 +134,10 @@ const AddPostForm = ({ close }) => {
 
                     <Button
                         type="submit"
-                        variant="outline-success"
+                        variant="outline-warning"
                     >
                         salva
+
                     </Button>
                 </div>
             </form>
